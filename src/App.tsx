@@ -167,51 +167,37 @@ function App() {
               <Route path="/guide/register" element={<ProviderRegister />} />
               <Route path="/guide/dashboard" element={
                 <ProtectedRoute requiredRole="provider">
-                  <ProviderLayout>
                     <ProviderDashboard />
-                  </ProviderLayout>
                 </ProtectedRoute>
               } />
               <Route path="/guide/profile" element={
                 <ProtectedRoute requiredRole="provider">
-                  <ProviderLayout>
                     <ProviderProfile />
-                  </ProviderLayout>
                 </ProtectedRoute>
               } />
               <Route path="/guide/experiences" element={
                 <ProtectedRoute requiredRole="provider">
-                  <ProviderLayout>
                     <ProviderExperiences />
-                  </ProviderLayout>
                 </ProtectedRoute>
               } />
               <Route path="/guide/experiences/new" element={
                 <ProtectedRoute requiredRole="provider">
-                  <ProviderLayout>
                     <ProviderExperienceForm />
-                  </ProviderLayout>
                 </ProtectedRoute>
               } />
               <Route path="/guide/experiences/edit/:id" element={
                 <ProtectedRoute requiredRole="provider">
-                  <ProviderLayout>
                     <ProviderExperienceForm />
-                  </ProviderLayout>
                 </ProtectedRoute>
               } />
               <Route path="/guide/bookings" element={
                 <ProtectedRoute requiredRole="provider">
-                  <ProviderLayout>
                     <ProviderBookings />
-                  </ProviderLayout>
                 </ProtectedRoute>
               } />
               <Route path="/guide/bookings/:id" element={
                 <ProtectedRoute requiredRole="provider">
-                  <ProviderLayout>
                     <ProviderBookingDetail />
-                  </ProviderLayout>
                 </ProtectedRoute>
               } />
 
