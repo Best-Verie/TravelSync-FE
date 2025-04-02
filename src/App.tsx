@@ -83,31 +83,31 @@ function App() {
               } />
               <Route path="/booking/:id" element={
                 <ProtectedRoute>
-                  <TouristLayout>
+                  {/* <TouristLayout> */}
                     <Booking />
-                  </TouristLayout>
+                  {/* </TouristLayout> */}
                 </ProtectedRoute>
               } />
               <Route path="/payment/:bookingId" element={
                 <ProtectedRoute>
-                  <TouristLayout>
+                  {/* <TouristLayout> */}
                     <Payment />
-                  </TouristLayout>
+                  {/* </TouristLayout> */}
                 </ProtectedRoute>
               } />
 
               <Route path="/payment" element={
                 <ProtectedRoute>
-                  <TouristLayout>
+                  {/* <TouristLayout> */}
                     <Payment />
-                  </TouristLayout>
+                  {/* </TouristLayout> */}
                 </ProtectedRoute>
               } />
               <Route path="/booking-success/:bookingId" element={
                 <ProtectedRoute>
-                  <TouristLayout>
+                  {/* <TouristLayout> */}
                     <BookingSuccess />
-                  </TouristLayout>
+                  {/* </TouristLayout> */}
                 </ProtectedRoute>
               } />
               <Route path="/tourist/profile" element={
@@ -119,9 +119,9 @@ function App() {
               } />
               <Route path="/tourist/my-courses" element={
                 <ProtectedRoute>
-                  <TouristLayout>
+                  {/* <TouristLayout> */}
                     <MyCourses />
-                  </TouristLayout>
+                  {/* </TouristLayout> */}
                 </ProtectedRoute>
               } />
 
