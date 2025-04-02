@@ -77,7 +77,7 @@ const Services = () => {
                     price={`$${experience.price} / ${experience.price < 10 ? 'session' : 'person'}`}
                     rating={experience.rating || 4.5}
                     image={experience.images?.[0] || experience.image}
-                    onClick={() => navigate(`/experience/${experience.id}`)}
+                    onClick={() => navigate(`/experiences/${experience.id}`)}
                   />
                 ))}
               </div>

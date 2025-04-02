@@ -153,7 +153,7 @@ const DestinationGrid = ({ destinations }) => {
             <h3 className="text-xl font-bold mb-2">{destination.title}</h3>
             <p className="text-gray-600 mb-4">{destination.description}</p>
             <Button className="w-full bg-eco-600 hover:bg-eco-700"
-                  onClick={() => navigate(`/experience/${destination.id}`)}
+                  onClick={() => navigate(`/experiences/${destination.id}`)}
             >Explore</Button>
           </div>
         </div>
