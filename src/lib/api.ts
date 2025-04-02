@@ -1,7 +1,9 @@
 import axios from 'axios';
 
 // Use environment variables for API URL or default to localhost in development
-const BASE_API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000/api';
+const BASE_API_URL =
+  import.meta.env.VITE_API_URL ||
+  "https://travelsync-api-2ecs.onrender.com/api";
 
 const api = axios.create({
   baseURL: BASE_API_URL,
