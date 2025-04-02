@@ -95,6 +95,14 @@ function App() {
                   </TouristLayout>
                 </ProtectedRoute>
               } />
+
+              <Route path="/payment" element={
+                <ProtectedRoute>
+                  <TouristLayout>
+                    <Payment />
+                  </TouristLayout>
+                </ProtectedRoute>
+              } />
               <Route path="/booking-success/:bookingId" element={
                 <ProtectedRoute>
                   <TouristLayout>
