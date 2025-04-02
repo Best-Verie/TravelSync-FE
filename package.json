@@ -12,7 +12,7 @@
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
     "preview": "vite preview",
-    "postinstall": "npm rebuild esbuild && npm install @rollup/rollup-linux-x64-gnu --save-dev"
+    "postinstall": "yarn rebuild esbuild && yarn install @rollup/rollup-linux-x64-gnu --save-dev"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
