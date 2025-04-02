@@ -17,8 +17,10 @@ const BookingSuccess = () => {
     const fetchBooking = async () => {
       if (!id) return;
       
+      console.log("Fetching booking with ID:", id);
       try {
         const data = await bookingsApi.getById(id);
+        console.log("Fetched booking data:", data);
         setBooking(data);
       } catch (error) {
         console.error("Failed to fetch booking:", error);

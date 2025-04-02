@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { format } from "date-fns";
@@ -22,18 +21,18 @@ const Booking = () => {
   const navigate = useNavigate();
   const { user, isAuthenticated } = useAuth();
   const { toast } = useToast();
-  
+
   const [experience, setExperience] = useState<any>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [date, setDate] = useState<Date | undefined>(undefined);
   const [participants, setParticipants] = useState<number>(1);
   const [totalPrice, setTotalPrice] = useState<number>(0);
   const [isProcessing, setIsProcessing] = useState<boolean>(false);
-  
+
   useEffect(() => {
     const fetchExperience = async () => {
       if (!id) return;
-      
+
       try {
         const data = await experiencesApi.getById(id);
         setExperience(data);
@@ -49,23 +48,23 @@ const Booking = () => {
         setLoading(false);
       }
     };
-    
+
     fetchExperience();
   }, [id, toast]);
-  
+
   useEffect(() => {
     if (experience) {
       setTotalPrice(experience.price * participants);
     }
   }, [participants, experience]);
-  
+
   const handleParticipantsChange = (change: number) => {
     const newValue = participants + change;
     if (newValue >= 1 && newValue <= (experience?.maxParticipants || 10)) {
       setParticipants(newValue);
     }
   };
-  
+
   const handleProceedToPayment = () => {
     if (!isAuthenticated) {
       toast({
@@ -85,9 +84,9 @@ const Booking = () => {
       });
       return;
     }
-    
-    // Navigate to payment page with booking details
-    navigate(`/payment`, {
+
+    // Navigate to payment page with booking details - updated to match the route in App.tsx
+    navigate(`/payment/${id}`, {
       state: {
         experienceId: id,
         experienceName: experience?.title,
@@ -98,7 +97,7 @@ const Booking = () => {
       }
     });
   };
-  
+
   if (loading) {
     return (
       <div className="container py-12 flex items-center justify-center min-h-[60vh]">
@@ -106,7 +105,7 @@ const Booking = () => {
       </div>
     );
   }
-  
+
   if (!experience) {
     return (
       <div className="container py-12">
@@ -123,11 +122,11 @@ const Booking = () => {
       </div>
     );
   }
-  
+
   return (
     <div className="container py-8 md:py-12">
       <h1 className="text-2xl md:text-3xl font-bold mb-6">Book Your Experience</h1>
-      
+
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Experience Details */}
         <div className="lg:col-span-2">
@@ -140,35 +139,35 @@ const Booking = () => {
               <div className="flex flex-col md:flex-row gap-6">
                 <div className="md:w-1/3">
                   <div className="aspect-video rounded-md overflow-hidden">
-                    <img 
-                      src={experience.images[0] || "/placeholder.svg"} 
-                      alt={experience.title}
+                    <img
+                      src={experience?.images?.[0] || "/placeholder.svg"}
+                      alt={experience?.title}
                       className="w-full h-full object-cover"
                     />
                   </div>
                 </div>
                 <div className="md:w-2/3">
-                  <h2 className="text-xl font-semibold">{experience.title}</h2>
-                  
+                  <h2 className="text-xl font-semibold">{experience?.title}</h2>
+
                   <div className="flex items-center mt-2 text-gray-600">
                     <MapPin className="h-4 w-4 mr-1" />
-                    <span className="text-sm">{experience.location}</span>
+                    <span className="text-sm">{experience?.location}</span>
                   </div>
-                  
+
                   <div className="flex items-center mt-2 text-gray-600">
                     <Clock className="h-4 w-4 mr-1" />
-                    <span className="text-sm">Duration: {experience.duration} hours</span>
+                    <span className="text-sm">Duration: {experience?.duration} hours</span>
                   </div>
-                  
+
                   <div className="flex items-center mt-2 text-gray-600">
                     <Users className="h-4 w-4 mr-1" />
-                    <span className="text-sm">Max participants: {experience.maxParticipants}</span>
+                    <span className="text-sm">Max participants: {experience?.maxParticipants}</span>
                   </div>
-                  
-                  <p className="mt-4 text-gray-600 line-clamp-3">{experience.description}</p>
-                  
+
+                  <p className="mt-4 text-gray-600 line-clamp-3">{experience?.description}</p>
+
                   <div className="mt-4">
-                    <span className="font-medium text-lg text-eco-700">${experience.price}</span>
+                    <span className="font-medium text-lg text-eco-700">${experience?.price}</span>
                     <span className="text-gray-500 text-sm"> / person</span>
                   </div>
                 </div>
@@ -176,7 +175,7 @@ const Booking = () => {
             </CardContent>
           </Card>
         </div>
-        
+
         {/* Booking Form */}
         <div>
           <Card>
@@ -205,11 +204,12 @@ const Booking = () => {
                       onSelect={setDate}
                       initialFocus
                       disabled={(date) => date < new Date()}
+                      className="pointer-events-auto"
                     />
                   </PopoverContent>
                 </Popover>
               </div>
-              
+
               {/* Participants */}
               <div className="space-y-2">
                 <label className="text-sm font-medium">Number of Participants</label>
@@ -233,9 +233,9 @@ const Booking = () => {
                   </Button>
                 </div>
               </div>
-              
+
               <Separator />
-              
+
               {/* Price Summary */}
               <div className="space-y-2">
                 <div className="flex justify-between">
